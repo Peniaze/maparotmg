@@ -18,6 +18,7 @@ type
     Image2: TImage;
     Image3: TImage;
     Image4: TImage;
+    Label1: TLabel;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -40,8 +41,7 @@ procedure TForm1.Button1Click(Sender: TObject);
 var i,j,k,wrng,rigt,adjustx,adjusty:integer; Pic,template:TPicture; perc:array [1..13] of integer;
   temp:string;
 begin
-     //if Edit1.text = '' then
-     //   Edit1.text:= 'Put link to image here.';
+     memo1.Lines.Clear;
      Pic:= TPicture.Create;
      try
         Pic.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap));
@@ -56,17 +56,21 @@ begin
      adjusty:=55;   //55
      for k:=1 to 13 do
          begin
+              wrng:=0;
+               rigt:=0;
               perc[k]:=0;
-              template.LoadFromFile('maps\world'+inttostr(k)+'.png');
+              template.LoadFromFile('mapss\world'+inttostr(k)+'.png');
      for i:=1 to template.Width do
          for j:=1 to template.Height do
              begin
                   if (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$000000)
                   and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$FFFFFF)
-                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$7F7F7F) then
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$7F7F7F)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$0000FF)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$00CFCF) then
                      begin
-                          if Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty] =
-                          template.Bitmap.Canvas.Pixels[i,j] then
+                          if template.Bitmap.Canvas.Pixels[i,j]=
+                          Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty] then
                              rigt +=1
                           else
                              wrng +=1;
@@ -90,12 +94,17 @@ begin
              j:=perc[i];
              k:=i;
             end;
-     template.LoadFromFile('maps\world'+inttostr(k)+'.png');
+     label1.Caption:='World '+inttostr(k);
+     template.LoadFromFile('mapss\world'+inttostr(k)+'.png');
      for i:=1 to template.Width do
          for j:=1 to template.Height do
              begin
                   image1.Canvas.Pixels[i,j]:= Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty];
-                  if not(Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]=$000000) then
+                  if (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$000000)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$FFFFFF)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$7F7F7F)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$0000FF)
+                  and (Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty]<>$00CFCF) then
                      if Pic.Bitmap.Canvas.Pixels[i+adjustx,j+adjusty] =
                      template.Bitmap.Canvas.Pixels[i,j] then
                      image2.Canvas.pixels[i,j]:=$0000FF

@@ -1,45 +1,52 @@
 object Form1: TForm1
   Left = 245
-  Height = 390
+  Height = 313
   Top = 105
-  Width = 749
+  Width = 636
   Caption = 'Form1'
-  ClientHeight = 390
-  ClientWidth = 749
+  ClientHeight = 313
+  ClientWidth = 636
   OnCreate = FormCreate
   LCLVersion = '1.4.4.0'
-  object Edit1: TEdit
-    Left = 8
-    Height = 23
-    Top = 8
-    Width = 440
-    TabOrder = 0
-  end
   object Button1: TButton
     Left = 12
-    Height = 25
-    Top = 39
-    Width = 437
+    Height = 34
+    Top = 16
+    Width = 612
     OnClick = Button1Click
-    TabOrder = 1
+    TabOrder = 0
   end
   object Memo1: TMemo
     Left = 12
-    Height = 280
+    Height = 208
     Top = 72
-    Width = 268
-    TabOrder = 2
+    Width = 188
+    TabOrder = 1
   end
   object Image1: TImage
-    Left = 320
+    Left = 216
     Height = 192
     Top = 72
     Width = 192
   end
   object Image2: TImage
-    Left = 536
+    Left = 432
     Height = 192
     Top = 72
     Width = 192
+  end
+  object Label1: TLabel
+    Left = 376
+    Height = 1
+    Top = 272
+    Width = 1
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -21
+    Font.Name = 'Arial Black'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
 end
