@@ -42,6 +42,7 @@ var i,j,k,wrng,rigt,adjustx,adjusty:integer; Pic,template:TPicture; perc:array [
   temp:string;
 begin
      memo1.Lines.Clear;
+     label1.caption:='';
      Pic:= TPicture.Create;
      try
         Pic.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap));
@@ -94,6 +95,11 @@ begin
              j:=perc[i];
              k:=i;
             end;
+     if (j = 0) or (j = 1049) then
+        begin
+             Label1.Caption:='Co robíš??';
+             exit;
+        end;
      label1.Caption:='World '+inttostr(k);
      template.LoadFromFile('mapss\world'+inttostr(k)+'.png');
      for i:=1 to template.Width do
